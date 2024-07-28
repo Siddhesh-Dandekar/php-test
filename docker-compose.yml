@@ -1,0 +1,44 @@
+version: '2'
+services:
+
+    # Application container
+    php:
+        build: .
+        restart: unless-stopped
+        volumes:
+            - ./:/server/http
+        ports:
+            - "8080:80"
+        links:
+            - postgres
+            - redis
+        environment:
+            DEBUG: 'true'
+
+    postgres:
+        image: onjin/alpine-postgres:13.0
+        restart: unless-stopped
+        ports:
+            - "5432:5432"
+        environment:
+            LC_ALL: C.UTF-8
+            POSTGRES_USER: hellofresh
+            POSTGRES_PASSWORD: hellofresh
+            POSTGRES_DB: hellofresh
+
+    redis:
+        image: sickp/alpine-redis:3.2.2
+        restart: unless-stopped
+        ports:
+            - "6379:6379"
+
+    pgadmin:
+        image: dpage/pgadmin4
+        restart: unless-stopped
+        ports:
+            - "5050:80"
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@example.com
+            PGADMIN_DEFAULT_PASSWORD: admin
+        links:
+            - postgres
