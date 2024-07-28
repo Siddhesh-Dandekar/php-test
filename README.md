@@ -106,3 +106,8 @@ The following earn you bonus points:
 ---
 
 Good luck!
+
+
+- GITHUB REPOSITORY - https://github.com/Siddhesh-Dandekar/php-test.git 
+- I haven't done the frontend part very well due time issues so focused on the Backend Part more
+- I have installed pgadmin  - username - admin@example.com (password - admin)
